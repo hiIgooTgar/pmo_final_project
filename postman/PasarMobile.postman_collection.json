@@ -1,0 +1,441 @@
+{
+  "info": {
+    "_postman_id": "a15924sa-11a1-4b88-b59a-pasarmobile88",
+    "name": "PasarMobile - Final Project API - Final Project",
+    "description": "Koleksi API murni backend untuk proyek Perancangan Arsitektur Integrasi Sistem pada Aplikasi Mobile E-Commerce & Logistik.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Autentikasi & Akun",
+      "item": [
+        {
+          "name": "Registrasi Customer Baru",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nama\": \"Budi Santoso\",\n    \"email\": \"budi.baru@gmail.com\",\n    \"password\": \"password123\",\n    \"jenis_kelamin\": \"Laki-laki\",\n    \"nomor_telepon\": \"081234567899\",\n    \"alamat\": \"Jl. Raya Purwokerto No. 10\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Pengguna",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Skrip otomatis untuk menyimpan token hasil login ke environment",
+                  "var jsonData = pm.response.json();",
+                  "if(jsonData.status === 'success') {",
+                  "    pm.environment.set(\"token\", jsonData.data.access_token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin.igo@pasarmobile.com\",\n    \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout Akun",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Callback Transaksi (Payment Webhook)",
+      "item": [
+        {
+          "name": "Webhook Sinkronisasi Pembayaran",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id_transaksi_gateway\": \"PAY-GATEWAY-555555\",\n    \"status_pembayaran\": \"sukses\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payment/callback",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "callback"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Akses Katalog Umum (All Roles)",
+      "item": [
+        {
+          "name": "Menampilkan Semua Kategori",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menampilkan Detail Kategori",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/categories/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "categories", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[KASUS 1] Check Stock Real-Time Gudang",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/stock/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "stock", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menampilkan Semua Produk",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/products",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menampilkan Detail Produk",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/products/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Fitur Khusus Admin (Master)",
+      "item": [
+        {
+          "name": "Menambahkan Kategori Baru",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nama_kategori\": \"Buku & Alat Tulis\",\n    \"kode_kategori\": \"KTG-Buku\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menambahkan Produk Baru",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"kategori_produk_id\": 1,\n    \"nama_produk\": \"Laptop Developer V12\",\n    \"kode_produk\": \"SKU-LAP12\",\n    \"harga\": 18000000,\n    \"stok\": 10,\n    \"deskripsi_produk\": \"Laptop andalan untuk compile backend Laravel 12.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/products",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mengubah Status Pesanan Manual",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status_pesanan\": \"diproses\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders/1/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders", "1", "status"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menampilkan Audit Riwayat Keuangan",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/payments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[KASUS 3] Post Shipment (Kirim Logistik)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"order_id\": 5,\n    \"alamat_pengiriman\": \"Jl. Ksatrian, No. 4, Purwokerto\",\n    \"jasa_ekspedisi\": \"JNE REG\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shipment",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shipment"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. Pergerakan Kurir Logistik",
+      "item": [
+        {
+          "name": "Menampilkan Tugas Pengiriman Kurir",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/shipments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shipments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Tracking Kurir Lapangan",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status_pengiriman\": \"sampai_tujuan\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shipments/1/tracking",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shipments", "1", "tracking"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. Fitur Belanja (Customer)",
+      "item": [
+        {
+          "name": "Membuat Pesanan Baru (Checkout)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"items\": [\n        {\n            \"product_id\": 2,\n            \"qty\": 2\n        },\n        {\n            \"product_id\": 5,\n            \"qty\": 1\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[KASUS 2] Mengajukan Permintaan Invoice Pembayaran",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"order_id\": 3,\n    \"metode_pembayaran\": \"QRIS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payment/request",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "request"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menampilkan Riwayat Pesanan",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Menampilkan Detail Invoice Nota",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/orders/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ]
+}
