@@ -11,7 +11,7 @@ class ProductSeeder extends Seeder
     {
         Product::create([
             'kategori_produk_id' => 1,
-            'nama_produk' => 'Smartphone Pro Max 12',
+            'nama_produk' => 'Iphone 12 Pro Max',
             'kode_produk' => 'SKU-SMART12',
             'harga' => 12500000.00,
             'stok' => 25,

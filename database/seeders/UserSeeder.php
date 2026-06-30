@@ -11,53 +11,53 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'nama' => 'Igo Tegar Prambudhy',
-            'email' => 'admin.igo@pasarmobile.com',
+            'nama' => 'Admin Pasar Mobile',
+            'email' => 'admin.pm@pasarmobile.com',
             'password' => Hash::make('password123'),
             'jenis_kelamin' => 'Laki-laki',
             'role' => 'admin',
             'nomor_telepon' => '081234567890',
-            'alamat' => 'Kec. Purwokerto Utara, Kabupaten Banyumas',
+            'alamat' => 'Jl. Jenderal Soedirman No. 1, Purwokerto Utara, Banyumas',
         ]);
 
         User::create([
-            'nama' => 'Budi Santoso',
-            'email' => 'budi@gmail.com',
+            'nama' => 'Rahmat Hidayat',
+            'email' => 'rahmat@gmail.com',
             'password' => Hash::make('password123'),
             'jenis_kelamin' => 'Laki-laki',
             'role' => 'customer',
             'nomor_telepon' => '082134567891',
-            'alamat' => 'Jl. Berkoh No. 12, Purwokerto Selatan',
+            'alamat' => 'Jl. Berkah No. 12, Purwokerto Selatan, Banyumas',
         ]);
 
         User::create([
-            'nama' => 'Siti Aminah',
-            'email' => 'siti@gmail.com',
+            'nama' => 'Sofyan Khoiron Mukhlis',
+            'email' => 'sofyan@gmail.com',
             'password' => Hash::make('password123'),
-            'jenis_kelamin' => 'Perempuan',
+            'jenis_kelamin' => 'Laki-laki',
             'role' => 'customer',
             'nomor_telepon' => '083134567892',
-            'alamat' => 'Perumahan Arcawinangun, Purwokerto Timur',
+            'alamat' => 'Perumahan Arcawinangun, Purwokerto Timur, Banyumas',
         ]);
 
         User::create([
-            'nama' => 'Randi Logistik',
+            'nama' => 'Nuril Rizqian',
+            'email' => 'nuril.kurir@pasarmobile.com',
+            'password' => Hash::make('password123'),
+            'jenis_kelamin' => 'Laki-laki',
+            'role' => 'kurir',
+            'nomor_telepon' => '087134567894',
+            'alamat' => 'Karangklesem, Purwokerto Selatan, Banyumas',
+        ]);
+
+        User::create([
+            'nama' => 'Randi Irwansyah',
             'email' => 'randi.kurir@pasarmobile.com',
             'password' => Hash::make('password123'),
             'jenis_kelamin' => 'Laki-laki',
             'role' => 'kurir',
             'nomor_telepon' => '085134567893',
-            'alamat' => 'Sokanegara, Purwokerto Timur',
-        ]);
-
-        User::create([
-            'nama' => 'Agus Delivery',
-            'email' => 'agus.kurir@pasarmobile.com',
-            'password' => Hash::make('password123'),
-            'jenis_kelamin' => 'Laki-laki',
-            'role' => 'kurir',
-            'nomor_telepon' => '087134567894',
-            'alamat' => 'Karangklesem, Purwokerto Selatan',
+            'alamat' => 'Jl. Abadi No. 32, Purwokerto Timur, Banyumas',
         ]);
     }
 }

@@ -13,8 +13,8 @@ class ShipmentSeeder extends Seeder
             'order_id' => 1,
             'courier_id' => null,
             'nomor_resi' => 'RESI-JNE-MANUAL001',
-            'alamat_pengiriman' => 'Jl. Berkoh No. 12, Purwokerto Selatan',
-            'jasa_ekspedisi' => 'JNE REG',
+            'alamat_pengiriman' => 'Jl. Berkah No. 12, Purwokerto Selatan, Banyumas',
+            'jasa_ekspedisi' => 'JNE',
             'status_pengiriman' => 'manifest',
         ]);
 
@@ -22,7 +22,7 @@ class ShipmentSeeder extends Seeder
             'order_id' => 2,
             'courier_id' => 4,
             'nomor_resi' => 'RESI-JNT-MANUAL002',
-            'alamat_pengiriman' => 'Jl. Berkoh No. 12, Purwokerto Selatan',
+            'alamat_pengiriman' => 'Jl. Berkah No. 12, Purwokerto Selatan, Banyumas',
             'jasa_ekspedisi' => 'J&T Express',
             'status_pengiriman' => 'sedang_dikirim',
         ]);
@@ -31,7 +31,7 @@ class ShipmentSeeder extends Seeder
             'order_id' => 3,
             'courier_id' => null,
             'nomor_resi' => null,
-            'alamat_pengiriman' => 'Perumahan Arcawinangun, Purwokerto Timur',
+            'alamat_pengiriman' => 'Perumahan Arcawinangun, Purwokerto Timur, Banyumas',
             'jasa_ekspedisi' => 'SiCepat',
             'status_pengiriman' => 'manifest',
         ]);
@@ -40,8 +40,8 @@ class ShipmentSeeder extends Seeder
             'order_id' => 4,
             'courier_id' => 5,
             'nomor_resi' => 'RESI-SICEPAT-MANUAL004',
-            'alamat_pengiriman' => 'Perumahan Arcawinangun, Purwokerto Timur',
-            'jasa_ekspedisi' => 'SiCepat Halu',
+            'alamat_pengiriman' => 'Perumahan Arcawinangun, Purwokerto Timur, Banyumas',
+            'jasa_ekspedisi' => 'SiCepat',
             'status_pengiriman' => 'sampai_tujuan',
         ]);
 
@@ -49,8 +49,8 @@ class ShipmentSeeder extends Seeder
             'order_id' => 5,
             'courier_id' => 4,
             'nomor_resi' => 'RESI-JNE-MANUAL005',
-            'alamat_pengiriman' => 'Jl. Berkoh No. 12, Purwokerto Selatan',
-            'jasa_ekspedisi' => 'JNE OKE',
+            'alamat_pengiriman' => 'Jl. Berkah No. 12, Purwokerto Selatan, Banyumas',
+            'jasa_ekspedisi' => 'JNE',
             'status_pengiriman' => 'dalam_proses',
         ]);
     }
